@@ -39,6 +39,17 @@ window.profileWeb = (function () {
         sections.forEach((s) => spyObserver.observe(s));
     }
 
+    // Smooth-scroll to whatever element the URL hash points at. Used after a
+    // cross-page nav like /blogs -> /#work, where the browser's own jump fires
+    // before Blazor has rendered the target section.
+    function scrollToHash() {
+        const hash = window.location.hash;
+        if (!hash || hash.length < 2) return;
+        let el = null;
+        try { el = document.querySelector(hash); } catch (e) { return; }
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     // Close the mobile menu after the user taps a link (handled in Blazor too,
     // this is just a belt-and-braces for hash navigation).
     function closeMobileMenuOnHashChange(dotNetRef) {
@@ -47,5 +58,5 @@ window.profileWeb = (function () {
         });
     }
 
-    return { getTheme, setTheme, toggleTheme, initScrollSpy, closeMobileMenuOnHashChange };
+    return { getTheme, setTheme, toggleTheme, initScrollSpy, scrollToHash, closeMobileMenuOnHashChange };
 })();

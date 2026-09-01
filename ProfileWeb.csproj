@@ -8,8 +8,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="1.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.1" PrivateAssets="all" />
   </ItemGroup>
+
+  <!--
+    Auto-generate the content indexes from the .md files on disk.
+    Drop a .md file in wwwroot/content/blogs or wwwroot/content/pages and it
+    shows up automatically on the next build — no manifest to hand-edit.
+    Output: wwwroot/content/blogs.json / pages.json  (a JSON array of slugs).
+  -->
+  <Target Name="GenerateContentIndexes"
+          BeforeTargets="ResolveStaticWebAssetsInputs;BeforeBuild;BeforeRebuild">
+    <ItemGroup>
+      <_BlogMd Include="$(MSBuildProjectDirectory)/wwwroot/content/blogs/*.md" />
+      <_PageMd Include="$(MSBuildProjectDirectory)/wwwroot/content/pages/*.md" />
+    </ItemGroup>
+    <PropertyGroup>
+      <_BlogIndexJson>[@(_BlogMd->'&quot;%(Filename)&quot;', ',')]</_BlogIndexJson>
+      <_PageIndexJson>[@(_PageMd->'&quot;%(Filename)&quot;', ',')]</_PageIndexJson>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(MSBuildProjectDirectory)/wwwroot/content/blogs.json"
+                      Lines="$(_BlogIndexJson)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+    <WriteLinesToFile File="$(MSBuildProjectDirectory)/wwwroot/content/pages.json"
+                      Lines="$(_PageIndexJson)" Overwrite="true" WriteOnlyWhenDifferent="true" />
+  </Target>
 
 </Project>

@@ -1,0 +1,41 @@
+@page "/pages"
+@inject ContentService Content
+
+<PageTitle>Pages — @Profile.FullName</PageTitle>
+
+<section class="section">
+    <div class="wrap wrap--reading">
+        <SectionHead Index="//" Title="Pages" />
+
+        @if (_pages is null)
+        {
+            <p class="mono">LOADING…</p>
+        }
+        else if (_pages.Count == 0)
+        {
+            <div class="slab" style="padding:1.5rem">
+                <p class="mono">No pages yet.</p>
+                <p style="margin-top:.5rem">Add a <code>.md</code> file in <code>wwwroot/content/pages/</code> — e.g. <code>privacy-policy.md</code> — then link to <code>/pages/privacy-policy</code>.</p>
+            </div>
+        }
+        else
+        {
+            <div class="pagelist">
+                @foreach (var p in _pages)
+                {
+                    <a href="/pages/@p.Slug">
+                        <span>@p.Title</span>
+                        @if (p.Date is { } d) { <span class="mono">@d.ToString("dd MMM yyyy")</span> }
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private IReadOnlyList<ContentItem>? _pages;
+
+    protected override async Task OnInitializedAsync()
+        => _pages = await Content.GetPagesAsync();
+}

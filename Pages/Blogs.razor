@@ -1,0 +1,55 @@
+@page "/blogs"
+@inject ContentService Content
+
+<PageTitle>Blog — @Profile.FullName</PageTitle>
+
+<section class="section">
+    <div class="wrap">
+        <SectionHead Index="//" Title="Blog" />
+
+        @if (_posts is null)
+        {
+            <p class="mono">LOADING…</p>
+        }
+        else if (_posts.Count == 0)
+        {
+            <div class="slab" style="padding:1.5rem">
+                <p class="mono">No posts yet.</p>
+                <p style="margin-top:.5rem">Drop a <code>.md</code> file in <code>wwwroot/content/blogs/</code> and it shows up here.</p>
+            </div>
+        }
+        else
+        {
+            <div class="postlist">
+                @foreach (var p in _posts)
+                {
+                    <a class="postcard" href="/blogs/@p.Slug">
+                        <div class="postcard__meta mono">
+                            @if (p.Date is { } d) { <span>@d.ToString("dd MMM yyyy")</span> }
+                            <span>· @p.ReadingMinutes min</span>
+                        </div>
+                        <h2 class="postcard__title">@p.Title</h2>
+                        @if (!string.IsNullOrWhiteSpace(p.Description))
+                        {
+                            <p class="postcard__blurb">@p.Description</p>
+                        }
+                        @if (p.Tags.Length > 0)
+                        {
+                            <div class="postcard__tags">
+                                @foreach (var t in p.Tags) { <span>#@t</span> }
+                            </div>
+                        }
+                        <span class="link postcard__more">Read →</span>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private IReadOnlyList<ContentItem>? _posts;
+
+    protected override async Task OnInitializedAsync()
+        => _posts = await Content.GetBlogPostsAsync();
+}

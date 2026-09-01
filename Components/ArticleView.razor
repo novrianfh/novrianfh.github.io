@@ -1,0 +1,77 @@
+@* Loads and renders one Markdown document, with loading / not-found states. *@
+@inject ContentService Content
+
+@if (_state == State.Loading)
+{
+    <p class="mono article__status">LOADING…</p>
+}
+else if (_state == State.NotFound || Doc is null)
+{
+    <div class="article__status">
+        <h1 class="display" style="-webkit-text-stroke:2px var(--ink); color:transparent;">404</h1>
+        <p class="mono">This @Kind doesn't exist.</p>
+        <a class="btn btn--primary" href="@BackHref">@BackLabel</a>
+    </div>
+}
+else
+{
+    <article>
+        <a class="link article__back" href="@BackHref">← @BackLabel</a>
+
+        <header class="article__head">
+            <h1 class="article__title">@Doc.Meta.Title</h1>
+            @if (Kind == "post")
+            {
+                <div class="article__meta mono">
+                    @if (Doc.Meta.Date is { } dt) { <span>@dt.ToString("dd MMM yyyy")</span> }
+                    <span>· @Doc.Meta.ReadingMinutes min read</span>
+                    @foreach (var tag in Doc.Meta.Tags)
+                    {
+                        <span class="tag article__tag">#@tag</span>
+                    }
+                </div>
+            }
+            else if (Doc.Meta.Date is { } dt2)
+            {
+                <div class="article__meta mono"><span>Last updated @dt2.ToString("dd MMM yyyy")</span></div>
+            }
+        </header>
+
+        <div class="prose">@((MarkupString)Doc.Html)</div>
+    </article>
+}
+
+@code {
+    private enum State { Loading, Ready, NotFound }
+
+    [Parameter, EditorRequired] public string Slug { get; set; } = "";
+    /// <summary>"post" or "page".</summary>
+    [Parameter] public string Kind { get; set; } = "page";
+    [Parameter] public EventCallback<string> TitleChanged { get; set; }
+
+    private string BackHref => Kind == "post" ? "/blogs" : "/";
+    private string BackLabel => Kind == "post" ? "All posts" : "Home";
+
+    private RenderedContent? Doc;
+    private State _state = State.Loading;
+    private string? _loadedSlug;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Slug == _loadedSlug) return;   // parent re-render, same document — nothing to do
+        _loadedSlug = Slug;
+
+        _state = State.Loading;
+        Doc = null;
+        StateHasChanged();
+
+        Doc = Kind == "post"
+            ? await Content.GetBlogPostAsync(Slug)
+            : await Content.GetPageAsync(Slug);
+
+        _state = Doc is null ? State.NotFound : State.Ready;
+
+        if (TitleChanged.HasDelegate)
+            await TitleChanged.InvokeAsync(Doc?.Meta.Title ?? "Not found");
+    }
+}

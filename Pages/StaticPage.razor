@@ -1,0 +1,15 @@
+@page "/pages/{Slug}"
+
+<PageTitle>@_title — @Profile.FullName</PageTitle>
+
+<section class="section">
+    <div class="wrap wrap--reading">
+        <ArticleView Slug="@Slug" Kind="page" TitleChanged="t => _title = t" />
+    </div>
+</section>
+
+@code {
+    [Parameter] public string Slug { get; set; } = "";
+
+    private string _title = "Page";
+}

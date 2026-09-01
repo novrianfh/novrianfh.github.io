@@ -1,15 +1,17 @@
 @inject IJSRuntime JS
+@inject NavigationManager Nav
 @implements IDisposable
 
 <nav class="nav">
     <div class="wrap nav__inner">
-        <a class="nav__brand" href="#top">@Profile.Initials<span aria-hidden="true">_</span></a>
+        <a class="nav__brand" href="/" @onclick="CloseMenu">@Profile.Initials<span aria-hidden="true">_</span></a>
 
         <div class="nav__links">
-            @foreach (var (id, label) in _items)
+            @foreach (var (id, label) in _sections)
             {
-                <a class="nav__link" data-nav="@id" href="#@id">@label</a>
+                <a class="nav__link" data-nav="@id" href="/#@id">@label</a>
             }
+            <a class="nav__link" href="/blogs">Blog</a>
         </div>
 
         <div class="nav__actions">
@@ -22,17 +24,18 @@
     </div>
 
     <div class="nav__mobile @(_open ? "open" : "")">
-        @foreach (var (id, label) in _items)
+        @foreach (var (id, label) in _sections)
         {
-            <a href="#@id" @onclick="CloseMenu">@label</a>
+            <a href="/#@id" @onclick="CloseMenu">@label</a>
         }
+        <a href="/blogs" @onclick="CloseMenu">Blog</a>
     </div>
 </nav>
 
 @code {
     private bool _open;
 
-    private readonly (string Id, string Label)[] _items =
+    private readonly (string Id, string Label)[] _sections =
     {
         ("about", "About"),
         ("skills", "Skills"),
@@ -51,11 +54,31 @@
         StateHasChanged();
     }
 
+    protected override void OnInitialized() => Nav.LocationChanged += OnLocationChanged;
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
-            await JS.InvokeVoidAsync("profileWeb.initScrollSpy");
+            await SafeInitScrollSpy();
     }
 
-    public void Dispose() { }
+    private async void OnLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        _open = false;
+        StateHasChanged();
+        await Task.Delay(150);          // let the new page render
+        await SafeInitScrollSpy();
+    }
+
+    private async Task SafeInitScrollSpy()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("profileWeb.initScrollSpy");
+            await JS.InvokeVoidAsync("profileWeb.scrollToHash");
+        }
+        catch { /* JS not ready / component gone */ }
+    }
+
+    public void Dispose() => Nav.LocationChanged -= OnLocationChanged;
 }
