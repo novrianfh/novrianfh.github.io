@@ -1,0 +1,61 @@
+@inject IJSRuntime JS
+@implements IDisposable
+
+<nav class="nav">
+    <div class="wrap nav__inner">
+        <a class="nav__brand" href="#top">@Profile.Initials<span aria-hidden="true">_</span></a>
+
+        <div class="nav__links">
+            @foreach (var (id, label) in _items)
+            {
+                <a class="nav__link" data-nav="@id" href="#@id">@label</a>
+            }
+        </div>
+
+        <div class="nav__actions">
+            <ThemeToggle />
+            <button class="icon-btn nav__toggle" @onclick="ToggleMenu"
+                    aria-label="Toggle menu" aria-expanded="@_open.ToString().ToLowerInvariant()">
+                @(_open ? "✕" : "≡")
+            </button>
+        </div>
+    </div>
+
+    <div class="nav__mobile @(_open ? "open" : "")">
+        @foreach (var (id, label) in _items)
+        {
+            <a href="#@id" @onclick="CloseMenu">@label</a>
+        }
+    </div>
+</nav>
+
+@code {
+    private bool _open;
+
+    private readonly (string Id, string Label)[] _items =
+    {
+        ("about", "About"),
+        ("skills", "Skills"),
+        ("work", "Work"),
+        ("projects", "Projects"),
+        ("contact", "Contact"),
+    };
+
+    private void ToggleMenu() => _open = !_open;
+
+    [JSInvokable]
+    public void CloseMenu()
+    {
+        if (!_open) return;
+        _open = false;
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+            await JS.InvokeVoidAsync("profileWeb.initScrollSpy");
+    }
+
+    public void Dispose() { }
+}

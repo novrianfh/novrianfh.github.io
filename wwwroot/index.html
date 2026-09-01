@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Novrian Fajar Hidayat — Software Engineer</title>
+    <meta name="description" content="Portfolio of Novrian Fajar Hidayat, software engineer working with .NET, Blazor and the web." />
+    <meta name="author" content="Novrian Fajar Hidayat" />
+    <meta name="theme-color" content="#f4f4ef" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Novrian Fajar Hidayat — Software Engineer" />
+    <meta property="og:description" content="Portfolio of Novrian Fajar Hidayat, software engineer working with .NET, Blazor and the web." />
+    <meta property="og:url" content="https://novrianfh.github.io/" />
+    <meta name="twitter:card" content="summary" />
+
+    <base href="/" />
+
+    <link rel="preload" id="webassembly" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link href="ProfileWeb.styles.css" rel="stylesheet" />
+    <script type="importmap"></script>
+
+    <!-- Set theme before first paint to avoid a flash -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { document.documentElement.setAttribute('data-theme', 'light'); }
+        })();
+    </script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="boot">
+            <div class="boot__box">
+                <span class="boot__label">LOADING</span>
+                <div class="boot__bar"><span></span></div>
+                <span class="boot__hint">compiling webassembly…</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui">
+        SOMETHING BROKE.
+        <a href="." class="reload">RELOAD</a>
+        <span class="dismiss">✕</span>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
+</body>
+
+</html>

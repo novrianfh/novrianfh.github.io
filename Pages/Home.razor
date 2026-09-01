@@ -1,0 +1,166 @@
+@page "/"
+
+<PageTitle>@Profile.FullName — @Profile.Role</PageTitle>
+
+<!-- ============================ HERO ============================ -->
+<header class="section hero">
+    <div class="wrap hero__grid">
+        <div>
+            <span class="badge">@Profile.Status</span>
+            <h1 class="display hero__name">
+                <span>@_firstName</span>
+                <span class="ln2">@_lastName</span>
+            </h1>
+            <span class="hero__role">@Profile.Role</span>
+            <p class="hero__tagline">@Profile.Tagline</p>
+            <div class="hero__cta">
+                <a class="btn btn--primary" href="#projects">See the work ↓</a>
+                <a class="btn btn--blue" href="@Profile.ResumeUrl" target="_blank" rel="noopener">Résumé / CV</a>
+                <a class="btn" href="mailto:@Profile.Email">Say hi</a>
+            </div>
+        </div>
+
+        <aside class="slab hero__card">
+            <div class="portrait">
+                @* Replace this block with: <img src="assets/profile.jpg" alt="@Profile.FullName" /> *@
+                <span>@Profile.Initials</span>
+            </div>
+            <div class="hero__meta">
+                <div><span>NAME</span><b>@Profile.FullName</b></div>
+                <div><span>ROLE</span><b>@Profile.Role</b></div>
+                <div><span>BASED</span><b>@Profile.Location</b></div>
+                <div><span>MAIL</span><b>@Profile.Email</b></div>
+            </div>
+        </aside>
+    </div>
+</header>
+
+<!-- ========================== MARQUEE ========================== -->
+<div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+        @for (var rep = 0; rep < 2; rep++)
+        {
+            foreach (var m in Profile.Marquee)
+            {
+                <span>@m</span>
+            }
+        }
+    </div>
+</div>
+
+<!-- =========================== ABOUT =========================== -->
+<section id="about" class="section">
+    <div class="wrap">
+        <SectionHead Index="01" Title="About" />
+        <div class="about__grid">
+            <div class="about__body">
+                @foreach (var p in Profile.About)
+                {
+                    <p>@p</p>
+                }
+            </div>
+            <div class="facts">
+                @foreach (var (label, value) in Profile.Facts)
+                {
+                    <div>
+                        <div class="k">@label</div>
+                        <div class="v">@value</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================== SKILLS ========================== -->
+<section id="skills" class="section">
+    <div class="wrap">
+        <SectionHead Index="02" Title="Stack & Skills" />
+        <div class="skills">
+            @foreach (var group in Profile.Skills)
+            {
+                <div class="skillrow">
+                    <span class="skillrow__name">@group.Name</span>
+                    <div class="skillrow__items">
+                        @foreach (var item in group.Items)
+                        {
+                            <span class="tag">@item</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ============================ WORK =========================== -->
+<section id="work" class="section">
+    <div class="wrap">
+        <SectionHead Index="03" Title="Experience" />
+        <TimelineList Items="Profile.Experience" />
+
+        @if (Profile.Education.Length > 0)
+        {
+            <div style="margin-top:3.5rem">
+                <SectionHead Index="03b" Title="Education" />
+                <TimelineList Items="Profile.Education" />
+            </div>
+        }
+    </div>
+</section>
+
+<!-- ========================== PROJECTS ========================= -->
+<section id="projects" class="section">
+    <div class="wrap">
+        <SectionHead Index="04" Title="Selected Projects" />
+        <div class="projects">
+            @{ var i = 1; }
+            @foreach (var proj in Profile.Projects)
+            {
+                <article class="pcard">
+                    <span class="pcard__idx mono">P@(i++.ToString("00"))</span>
+                    <h3 class="pcard__name">@proj.Name</h3>
+                    <p class="pcard__blurb">@proj.Blurb</p>
+                    <div class="pcard__tech">
+                        @foreach (var t in proj.Tech)
+                        {
+                            <span>@t</span>
+                        }
+                    </div>
+                    <a class="link pcard__link" href="@proj.Link" target="_blank" rel="noopener">@proj.LinkLabel ↗</a>
+                </article>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- ========================== CONTACT ========================= -->
+<section id="contact" class="section">
+    <div class="wrap">
+        <SectionHead Index="05" Title="Contact" />
+        <div class="contact__grid">
+            <p class="contact__big">
+                Got something to build?<br />
+                <a href="mailto:@Profile.Email">@Profile.Email</a>
+            </p>
+            <div class="socials">
+                @foreach (var s in Profile.Socials)
+                {
+                    <a href="@s.Url" target="_blank" rel="noopener">@s.Name</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@code {
+    private string _firstName = "";
+    private string _lastName = "";
+
+    protected override void OnInitialized()
+    {
+        var parts = Profile.FullName.Split(' ', 2, StringSplitOptions.RemoveEmptyEntries);
+        _firstName = parts.Length > 0 ? parts[0] : Profile.FullName;
+        _lastName = parts.Length > 1 ? parts[1] : "";
+    }
+}

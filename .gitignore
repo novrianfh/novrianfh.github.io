@@ -1,0 +1,19 @@
+## .NET / build output
+bin/
+obj/
+release/
+publish/
+*.user
+*.suo
+.vs/
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## OS
+.DS_Store
+Thumbs.db
+
+## Logs
+*.binlog

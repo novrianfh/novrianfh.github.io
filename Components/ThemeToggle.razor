@@ -1,0 +1,22 @@
+@inject IJSRuntime JS
+
+<button class="icon-btn" @onclick="Toggle"
+        title="Toggle light / dark" aria-label="Toggle light / dark theme">
+    @(_theme == "dark" ? "☀" : "☾")
+</button>
+
+@code {
+    private string _theme = "light";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender) return;
+        _theme = await JS.InvokeAsync<string>("profileWeb.getTheme");
+        StateHasChanged();
+    }
+
+    private async Task Toggle()
+    {
+        _theme = await JS.InvokeAsync<string>("profileWeb.toggleTheme");
+    }
+}

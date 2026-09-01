@@ -1,0 +1,18 @@
+@inherits LayoutComponentBase
+
+<div class="page">
+    <a id="top"></a>
+    <NavBar />
+
+    <main>
+        @Body
+    </main>
+
+    <footer class="footer">
+        <div class="wrap footer__inner">
+            <span>© @DateTime.Now.Year @Profile.FullName</span>
+            <span>Built with Blazor WebAssembly · <a href="https://github.com/novrianfh/novrianfh.github.io">source</a></span>
+            <span>Brutalism, on purpose.</span>
+        </div>
+    </footer>
+</div>

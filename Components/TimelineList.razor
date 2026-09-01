@@ -1,0 +1,28 @@
+<div class="timeline">
+    @foreach (var job in Items)
+    {
+        <article class="tl">
+            <div class="tl__period">
+                @job.Period
+                <span class="co">@job.Company</span>
+            </div>
+            <div>
+                <h3 class="tl__title">@job.Title <span class="at">@("// " + job.Company)</span></h3>
+                <p class="tl__summary">@job.Summary</p>
+                @if (job.Highlights.Length > 0)
+                {
+                    <ul class="tl__hl">
+                        @foreach (var h in job.Highlights)
+                        {
+                            <li><span>@h</span></li>
+                        }
+                    </ul>
+                }
+            </div>
+        </article>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public Job[] Items { get; set; } = Array.Empty<Job>();
+}
