@@ -11,11 +11,11 @@ public static class Profile
     // ---- Identity -----------------------------------------------------------
     public const string FullName   = "Novrian Fajar Hidayat";
     public const string Initials   = "NFH";
-    public const string Role       = "Software Engineer"; // TODO: your headline role
-    public const string Location   = "Indonesia";          // TODO
-    public const string Status     = "OPEN TO WORK";       // TODO: e.g. "OPEN TO WORK" / "HEADS DOWN" / "FREELANCING"
+    public const string Role       = "Software Engineer, Solution Architects";
+    public const string Location   = "Indonesia";          // TODO    
+    public const string Status     = "OPEN TO FREELANCE";  // TODO: e.g. "OPEN TO WORK" / "HEADS DOWN" / "FREELANCING"
     public const string Email      = "thenovrianmail@gmail.com";
-    public const string ResumeUrl  = "assets/Novrian-Fajar-Hidayat-CV.pdf"; // TODO: drop your PDF in wwwroot/assets/
+    //public const string ResumeUrl  = "assets/Novrian-Fajar-Hidayat-CV.pdf"; // TODO: drop your PDF in wwwroot/assets/
 
     // Short punchy tagline shown under the name in the hero.
     public const string Tagline =
@@ -25,7 +25,7 @@ public static class Profile
     public static readonly string[] Marquee =
     {
         "C#  /  .NET", "BLAZOR", "AZURE", "SQL", "CLEAN ARCHITECTURE",
-        "DDD", "REST APIs", "CI/CD", "DOCKER", "PROBLEM SOLVER",
+         "REST APIs", "CI/CD", "PROBLEM SOLVER", "TYPESCRIPT"
     }; // TODO
 
     // ---- About ------------------------------------------------------------------
@@ -33,8 +33,8 @@ public static class Profile
     public static readonly string[] About =
     {
         "Hi, I'm Novrian — a software engineer who likes turning messy problems into small, boring, dependable systems. I care about correctness, readable code, and shipping things that people actually use.", // TODO
-        "My day-to-day is mostly the .NET stack: building APIs and services, wiring up front-ends with Blazor, and keeping the database honest. I'm just as happy debugging a nasty production issue as I am designing something from scratch.", // TODO
-        "Outside of work I tinker with side projects, read about systems design, and occasionally lose a weekend to a new language or framework.", // TODO
+        "My day-to-day is mostly working on a monolithic ASP.NET MVC website. I'm drawn to Blazor for building systems and solutions from the ground up.", // TODO
+        "Outside of programming I like to draw, and I'm keen on graphic design and editorial design — that's what I get up to in my time away from work. That said, I'm open to offers beyond coding and engineering too.",
     };
 
     // Quick facts shown as a small stat grid in the About section.
@@ -49,56 +49,42 @@ public static class Profile
     // ---- Skills ---------------------------------------------------------------
     public static readonly SkillGroup[] Skills =
     {
-        new("LANGUAGES",  new[] { "C#", "SQL", "JavaScript", "TypeScript", "HTML", "CSS", "Python" }),      // TODO
-        new("FRAMEWORKS", new[] { ".NET / ASP.NET Core", "Blazor", "Entity Framework Core", "xUnit" }),    // TODO
-        new("PLATFORM",   new[] { "Azure", "Docker", "GitHub Actions", "Linux", "Redis" }),                 // TODO
-        new("DATA",       new[] { "SQL Server", "PostgreSQL", "MongoDB" }),                                 // TODO
-        new("PRACTICES",  new[] { "Clean Architecture", "TDD", "DDD", "Agile / Scrum", "Code Review" }),    // TODO
+        new("LANGUAGES",  new[] { "C#", "SQL", "JavaScript", "TypeScript", "HTML", "CSS" }),      
+        new("FRAMEWORKS", new[] { ".NET / ASP.NET Core", "Blazor", "Entity Framework Core"}),    
+        new("PLATFORM",   new[] { "Azure", "Linux", "Redis" }),                 
+        new("DATA",       new[] { "SQL Server", "PostgreSQL"}),                                
+        new("PRACTICES",  new[] { "Clean Architecture", "Agile / Scrum", "Code Review" }),  
     };
 
     // ---- Experience ---------------------------------------------------------------
     public static readonly Job[] Experience =
     {
         new(
-            Company: "Company Name",                 // TODO
-            Title:   "Senior Software Engineer",     // TODO
-            Period:  "2023 — Present",               // TODO
-            Summary: "Lead development of X. Own the Y platform end to end.", // TODO
+            Company: "Logie Inc",
+            Title:   "Back End Developer · Full-time · Remote",
+            Period:  "Oct 2021 — Jul 2026",
+            Summary: "Designed and developed secure, scalable, high-performance GraphQL APIs. Built and optimized database structures for fast, reliable data access.",
             Highlights: new[]
             {
-                "Shipped a feature that did a measurable thing (numbers help).",     // TODO
-                "Cut build/deploy time from N minutes to M.",                        // TODO
-                "Mentored engineers; introduced a practice that stuck.",             // TODO
+                "Back-End Web Development",
+                "TypeScript",
             }),
         new(
-            Company: "Previous Company",             // TODO
-            Title:   "Software Engineer",            // TODO
-            Period:  "2020 — 2023",                  // TODO
-            Summary: "Built and maintained services for A, B, and C.", // TODO
-            Highlights: new[]
-            {
-                "Delivered project X on time and under scope creep.",   // TODO
-                "Reduced error rate / latency / cost by some amount.",  // TODO
-            }),
-        new(
-            Company: "First Company",                // TODO
-            Title:   "Junior Developer",             // TODO
-            Period:  "2019 — 2020",                  // TODO
-            Summary: "Where it started. Learned the craft on real tickets.", // TODO
-            Highlights: new[]
-            {
-                "Fixed bugs, wrote tests, learned to read a stack trace.", // TODO
-            }),
+            Company: "Microsoft Innovation Center Yogyakarta",
+            Title:   "Software Engineer Manager",
+            Period:  "Jul 2017 — Jul 2020",
+            Summary: "",
+            Highlights: Array.Empty<string>()),
     };
 
     // ---- Education / Certs (optional — leave empty array to hide the block) ---
     public static readonly Job[] Education =
     {
         new(
-            Company: "University Name",              // TODO
-            Title:   "B.Sc. Computer Science",      // TODO
-            Period:  "2015 — 2019",                  // TODO
-            Summary: "Thesis / focus area, honors, anything notable.", // TODO
+            Company: "Universitas Gadjah Mada",          
+            Title:   "S.T, Teknik Elektro (Computer Engineering)",     
+            Period:  "2007 — 2012",                 
+            Summary: "",
             Highlights: Array.Empty<string>()),
     };
 
@@ -106,33 +92,28 @@ public static class Profile
     public static readonly Project[] Projects =
     {
         new(
-            Name: "Project One",                                     // TODO
-            Blurb: "One sentence on what it does and why it's cool.", // TODO
-            Tech: new[] { ".NET", "Blazor", "PostgreSQL" },          // TODO
-            Link: "https://github.com/novrianfh",                    // TODO: repo or live URL
+            Name: "KanvasKata",
+            Blurb: "A browser-based canvas design app for building and exporting custom cards from text, images, and templates — fully client-side, no backend.",
+            Tech: new[] { "Blazor WebAssembly", ".NET 10", "C#", "html2canvas" },
+            Link: "https://github.com/novrianfh/KanvasKata",
             LinkLabel: "SOURCE"),
         new(
-            Name: "Project Two",
-            Blurb: "Another thing you built. Keep it concrete.",
-            Tech: new[] { "C#", "Azure Functions", "Redis" },
-            Link: "https://github.com/novrianfh",
+            Name: "Laporan Keuangan Masjid",
+            Blurb: "Editorial design templates and posters for mosque financial reports, with a fresh color theme each month.",
+            Tech: new[] { "Affinity Publisher", "Editorial Design", "Typography" },
+            Link: "https://github.com/novrianfh/Laporan-Keuangan-Masjid",
             LinkLabel: "SOURCE"),
-        new(
-            Name: "Project Three",
-            Blurb: "A tool, a library, a weekend hack — whatever you're proud of.",
-            Tech: new[] { "TypeScript", "Node" },
-            Link: "https://github.com/novrianfh",
-            LinkLabel: "DEMO"),
     };
 
     // ---- Links -----------------------------------------------------------------
     // Order matters — first one shows first. Remove any you don't use.
     public static readonly SocialLink[] Socials =
     {
-        new("GitHub",   "https://github.com/novrianfh"),                  // TODO
-        new("LinkedIn", "https://www.linkedin.com/in/novrianfh"),        // TODO
+        new("GitHub",   "https://github.com/novrianfh"),
+        new("LinkedIn", "https://www.linkedin.com/in/novrian-fajar-85184a120/"),        
         new("Email",    "mailto:thenovrianmail@gmail.com"),
-        new("Twitter/X","https://x.com/novrianfh"),                      // TODO or remove
+        new("Twitter/X","https://x.com/nvrnfjr"),                      
+        new("Instagram","https://www.instagram.com/nvrnfjr")                      
     };
 }
 
