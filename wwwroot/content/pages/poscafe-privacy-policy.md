@@ -1,3 +1,10 @@
+---
+title: Privacy Policy PosCafe
+date: 2026-09-09
+description: Privacy policy for PosCafe.
+draft: false
+---
+
 # Kebijakan Privasi — PosCafe
 
 **Berlaku sejak:** 9 September 2026
