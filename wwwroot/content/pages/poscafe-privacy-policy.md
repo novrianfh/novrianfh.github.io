@@ -7,7 +7,9 @@ draft: false
 
 # Kebijakan Privasi — PosCafe
 
-**Berlaku sejak:** 9 September 2026
+**Berlaku efektif:** 9 September 2026
+**Terakhir diperbarui:** 10 September 2026
+
 **Aplikasi:** PosCafe (Point of Sale untuk café / coffee shop)
 **Pengembang:** Novrian
 
@@ -15,14 +17,18 @@ draft: false
 
 ## Ringkasan
 
-PosCafe adalah aplikasi **offline penuh**. Semua data yang Anda masukkan dan hasilkan
-disimpan **secara lokal di perangkat Anda** menggunakan basis data SQLite. Aplikasi ini
-**tidak memiliki server**, **tidak memerlukan akun atau login**, dan **tidak mengirim data
-Anda ke mana pun**. Tidak ada iklan, analitik, atau pelacakan.
+Semua data usaha yang Anda masukkan dan hasilkan (menu, transaksi, pengaturan toko)
+disimpan **secara lokal di perangkat Anda** menggunakan basis data SQLite. Bagian POS
+ini **tidak memiliki server**, **tidak memerlukan akun atau login**, dan **tidak
+mengirim data usaha Anda ke mana pun**. Data usaha hanya meninggalkan perangkat jika
+**Anda sendiri** yang membagikannya lewat fitur *Backup* atau *Ekspor Excel* (mis.
+menyimpan file ke Google Drive atau mengirim lewat email).
 
-Data hanya bisa meninggalkan perangkat jika **Anda sendiri** yang membagikannya melalui
-fitur *Backup* atau *Ekspor Excel* (mis. menyimpan file ke Google Drive atau mengirim
-lewat email).
+PosCafe **menampilkan iklan** dari **Google AdMob**. Untuk menayangkan iklan, AdMob
+(pihak ketiga) mengakses **advertising ID** perangkat dan data terkait iklan. Anda
+dapat menghilangkan seluruh iklan lewat pembelian sekali bayar **"Bebas Iklan"** di
+Google Play, atau dengan menukar **kode voucher**. Selain AdMob, PosCafe tidak memakai
+analitik, *crash reporting*, atau pelacakan lain.
 
 ---
 
@@ -43,13 +49,48 @@ identitas pelanggan, data biometrik, atau informasi akun.
 
 ---
 
+## Iklan (Google AdMob)
+
+PosCafe menampilkan iklan banner dan iklan interstitial melalui **Google AdMob**. SDK
+AdMob berjalan di dalam aplikasi dan, untuk memilih serta mengukur iklan, dapat
+mengakses dan mengirim ke Google:
+
+- **Advertising ID** perangkat (identitas iklan yang dapat direset pengguna di
+  Setelan Android) dan penanda perangkat kasar lainnya.
+- Alamat IP, jenis perangkat, sistem operasi, dan interaksi dengan iklan
+  (tayang / klik).
+
+Data ini diproses Google sesuai
+[Kebijakan Privasi Google](https://policies.google.com/privacy) dan
+[cara Google menggunakan data saat Anda memakai situs/aplikasi mitra](https://policies.google.com/technologies/partner-sites).
+Untuk pengguna di wilayah yang mewajibkan (mis. EEA/UK), PosCafe menampilkan
+formulir persetujuan (consent) Google sebelum iklan personalisasi dimuat.
+
+PosCafe **tidak** membagikan data usaha Anda (menu, transaksi, pengaturan toko) kepada
+AdMob atau jaringan iklan mana pun.
+
+## Pembelian dalam aplikasi & voucher
+
+- **Bebas Iklan** adalah produk sekali beli melalui **Google Play Billing**. Seluruh
+  proses pembayaran ditangani Google Play; PosCafe tidak melihat atau menyimpan data
+  kartu / pembayaran Anda. Yang disimpan aplikasi hanyalah sebuah **penanda lokal**
+  bahwa iklan dimatikan.
+- **Kode voucher** divalidasi sepenuhnya di perangkat (offline). Kode yang Anda
+  masukkan hanya disimpan lokal untuk menandai status Bebas Iklan; tidak dikirim ke
+  mana pun.
+- **Pulihkan Pembelian** menanyakan ke Google Play apakah akun Google Anda memiliki
+  produk "Bebas Iklan", lalu mengaktifkannya kembali di perangkat ini.
+
+---
+
 ## Yang TIDAK dilakukan aplikasi
 
 - Tidak ada registrasi, login, atau profil pengguna.
-- Tidak mengirim data ke server pengembang atau pihak ketiga mana pun.
-- Tidak menampilkan iklan.
-- Tidak menggunakan SDK analitik, *crash reporting*, atau pelacakan.
-- Tidak menjual atau membagikan data ke siapa pun.
+- Tidak mengirim data **usaha** Anda ke server pengembang atau pihak ketiga mana pun.
+- Tidak menggunakan SDK analitik atau *crash reporting*.
+- Tidak menjual data Anda. Satu-satunya data yang dibagikan adalah penanda perangkat
+  untuk iklan, kepada Google AdMob, sebagaimana dijelaskan di atas — dan itu berhenti
+  sepenuhnya setelah Anda mengaktifkan Bebas Iklan.
 
 ---
 
@@ -73,7 +114,9 @@ tunduk pada kebijakan privasi layanan tersebut dan menjadi tanggung jawab Anda.
 | Izin | Alasan |
 |---|---|
 | `READ_MEDIA_IMAGES` / `READ_EXTERNAL_STORAGE` (hingga Android 12) | Agar Anda dapat memilih gambar menu dari galeri. Gambar disalin ke penyimpanan privat aplikasi; aplikasi tidak memindai atau mengunggah galeri Anda. |
-| `INTERNET`, `ACCESS_NETWORK_STATE` | Dideklarasikan sebagai bawaan kerangka kerja .NET MAUI. PosCafe **tidak menggunakannya untuk mengirim data Anda**. |
+| `INTERNET`, `ACCESS_NETWORK_STATE` | Dipakai oleh SDK Google AdMob (memuat iklan) dan Google Play Billing (memproses pembelian & pemulihan). **Tidak** dipakai untuk mengirim data usaha Anda. |
+| `com.google.android.gms.permission.AD_ID` | Mengizinkan SDK AdMob membaca advertising ID perangkat untuk penayangan iklan. Setelah Bebas Iklan aktif, iklan tidak lagi dimuat. |
+| `com.android.vending.BILLING` | Diperlukan Google Play Billing untuk pembelian "Bebas Iklan" dan "Pulihkan Pembelian". |
 
 ---
 
