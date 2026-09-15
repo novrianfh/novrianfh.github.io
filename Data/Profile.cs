@@ -14,7 +14,7 @@ public static class Profile
     public const string Role       = "Software Engineer, Solution Architects";
     public const string Location   = "Indonesia";          // TODO    
     public const string Status     = "OPEN TO FREELANCE";  // TODO: e.g. "OPEN TO WORK" / "HEADS DOWN" / "FREELANCING"
-    public const string Email      = "thenovrianmail@gmail.com";
+    public const string Email      = "novrian.fh@live.com";
     //public const string ResumeUrl  = "assets/Novrian-Fajar-Hidayat-CV.pdf"; // TODO: drop your PDF in wwwroot/assets/
 
     // Short punchy tagline shown under the name in the hero.
@@ -32,8 +32,8 @@ public static class Profile
     // 2–4 short paragraphs. Write like you talk.
     public static readonly string[] About =
     {
-        "Hi, I'm Novrian — a software engineer who likes turning messy problems into small, boring, dependable systems. I care about correctness, readable code, and shipping things that people actually use.", // TODO
-        "My day-to-day is mostly working on a monolithic ASP.NET MVC website. I'm drawn to Blazor for building systems and solutions from the ground up.", // TODO
+        "Hi, I'm Novrian — a software engineer who likes turning messy problems into small, boring, dependable systems. I care about correctness, readable code, and shipping things that people actually use.", 
+        "My day-to-day is mostly working on a monolithic ASP.NET MVC website. I'm drawn to Blazor for building systems and solutions from the ground up.", 
         "Outside of programming I like to draw, and I'm keen on graphic design and editorial design — that's what I get up to in my time away from work. That said, I'm open to offers beyond coding and engineering too.",
     };
 
@@ -95,7 +95,7 @@ public static class Profile
             Name: "KanvasKata",
             Blurb: "A browser-based canvas design app for building and exporting custom cards from text, images, and templates — fully client-side, no backend.",
             Tech: new[] { "Blazor WebAssembly", ".NET 10", "C#", "html2canvas" },
-            Link: "https://github.com/novrianfh/KanvasKata",
+            Link: "https://novrianfh.github.io/KanvasKata",
             LinkLabel: "SOURCE"),
         new(
             Name: "Laporan Keuangan Masjid",
@@ -103,6 +103,12 @@ public static class Profile
             Tech: new[] { "Affinity Publisher", "Editorial Design", "Typography" },
             Link: "https://github.com/novrianfh/Laporan-Keuangan-Masjid",
             LinkLabel: "SOURCE"),
+        new(
+            Name: "Jadwal Sholat Web App",
+            Blurb: "A simple client side web app that shows prayer times for any location in Indonesia.",
+            Tech: new[] { "Blazor WebAssembly", ".NET 10", "C#", "JavaScript", "CSS" },
+            Link: "https://novrianfh.github.io/JadwalSholat",
+            LinkLabel: "SOURCE")
     };
 
     // ---- Links -----------------------------------------------------------------
@@ -111,7 +117,7 @@ public static class Profile
     {
         new("GitHub",   "https://github.com/novrianfh"),
         new("LinkedIn", "https://www.linkedin.com/in/novrian-fajar-85184a120/"),        
-        new("Email",    "mailto:thenovrianmail@gmail.com"),
+        new("Email",    "mailto:novrian.fh@live.com"),
         new("Twitter/X","https://x.com/nvrnfjr"),                      
         new("Instagram","https://www.instagram.com/nvrnfjr")                      
     };
