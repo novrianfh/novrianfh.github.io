@@ -96,7 +96,7 @@ public static class Profile
             Blurb: "A browser-based canvas design app for building and exporting custom cards from text, images, and templates — fully client-side, no backend.",
             Tech: new[] { "Blazor WebAssembly", ".NET 10", "C#", "html2canvas" },
             Link: "https://novrianfh.github.io/KanvasKata",
-            LinkLabel: "SOURCE"),
+            LinkLabel: "KanvasKata App"),
         new(
             Name: "Laporan Keuangan Masjid",
             Blurb: "Editorial design templates and posters for mosque financial reports, with a fresh color theme each month.",
@@ -108,7 +108,7 @@ public static class Profile
             Blurb: "A simple client side web app that shows prayer times for any location in Indonesia.",
             Tech: new[] { "Blazor WebAssembly", ".NET 10", "C#", "JavaScript", "CSS" },
             Link: "https://novrianfh.github.io/JadwalSholat",
-            LinkLabel: "SOURCE")
+            LinkLabel: "JadwalSholat App")
     };
 
     // ---- Links -----------------------------------------------------------------
