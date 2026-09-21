@@ -19,6 +19,8 @@ Dengan mengunduh dan menggunakan Aplikasi, Anda menyetujui praktik yang
 dijelaskan dalam kebijakan ini. Jika Anda tidak setuju, mohon berhenti
 menggunakan Aplikasi.
 
+**English version:** [gymmathics-privacy-policy-en](/pages/gymmathics-privacy-policy-en)
+
 ---
 
 ## 1. Ringkasan Singkat
@@ -220,8 +222,6 @@ catatan rilis Aplikasi.
 Jika Anda memiliki pertanyaan, permintaan, atau keluhan terkait privasi,
 hubungi kami:
 
-- **Email:** thenovrianmail@gmail.com
+- **Email:** novrian.fh@live.com
 - **Pengembang:** Novrian
 - **Aplikasi:** GymMathics (`com.novrian.gymmathics`)
-</content>
-</invoke>

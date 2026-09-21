@@ -12,7 +12,7 @@ draft: false
 
 **Aplikasi:** PosCafe (Point of Sale untuk café / coffee shop)
 **Pengembang:** Novrian
-
+**English version:** [poscafe-privacy-policy-en](/pages/poscafe-privacy-policy-en)
 ---
 
 ## Ringkasan
@@ -152,5 +152,5 @@ pada berkas ini beserta tanggal "Berlaku sejak" yang diperbarui.
 
 Pertanyaan, saran, atau kritik terkait privasi:
 
-- Email: **thenovrianmail@gmail.com**
+- Email: **novrian.fh@live.com**
 - Instagram: **@nvrnfjr**
