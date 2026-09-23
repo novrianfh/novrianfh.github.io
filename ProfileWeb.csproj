@@ -13,6 +13,14 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.1" PrivateAssets="all" />
   </ItemGroup>
 
+  <!-- tools/ holds its own standalone project(s) (e.g. PrerenderPages) — keep
+       them out of this project's implicit file globs. -->
+  <ItemGroup>
+    <Compile Remove="tools/**/*.cs" />
+    <Content Remove="tools/**" />
+    <None Remove="tools/**" />
+  </ItemGroup>
+
   <!--
     Auto-generate the content indexes from the .md files on disk.
     Drop a .md file in wwwroot/content/blogs or wwwroot/content/pages and it

@@ -33,6 +33,14 @@ jobs:
       # This repo is a *user* site (novrianfh.github.io) served from "/",
       # so the default <base href="/"> is already correct — no rewrite needed.
 
+      # Static HTML for /pages/{slug}, so a direct request gets a real 200
+      # from GitHub Pages instead of relying on the SPA 404-fallback trick
+      # (which serves the right content but always with a 404 status).
+      - name: Prerender static pages
+        run: >
+          dotnet run --project tools/PrerenderPages -c Release --
+          wwwroot/content/pages release/wwwroot
+
       - name: GitHub Pages touch-ups
         run: |
           touch release/wwwroot/.nojekyll

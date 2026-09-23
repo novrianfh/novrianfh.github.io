@@ -21,3 +21,7 @@ Thumbs.db
 ## Auto-generated content indexes (rebuilt from wwwroot/content/**/*.md)
 wwwroot/content/blogs.json
 wwwroot/content/pages.json
+
+## Prerendered static HTML for /pages/{slug} (rebuilt by tools/PrerenderPages
+## during deploy; see .github/workflows/deploy.yml)
+wwwroot/pages/
