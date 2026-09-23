@@ -1,6 +1,6 @@
 {
-  "versionCode": 3,
-  "version": "1.4.0",
+  "versionCode": 4,
+  "version": "1.5.0",
   "notes": "Pilihan bahasa Indonesia/Inggris, pemberitahuan update otomatis, kode voucher untuk membuka Pro, dan tombol hapus iklan yang sudah aktif.\nLanguage picker (ID/EN), automatic update notice, Pro voucher codes, and a working remove-ads purchase.",
   "storeUrl": "https://play.google.com/store/apps/details?id=com.novrian.gymmathics"
 }
