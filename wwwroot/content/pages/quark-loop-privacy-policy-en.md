@@ -1,6 +1,6 @@
 ---
 title: Privacy Policy Quark Loop
-date: 2026-09-10
+date: 2026-10-28
 description: English version of Privacy policy for Quark Loop.
 draft: false
 ---
