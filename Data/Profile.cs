@@ -108,7 +108,13 @@ public static class Profile
             Blurb: "A simple client side web app that shows prayer times for any location in Indonesia.",
             Tech: new[] { "Blazor WebAssembly", ".NET 10", "C#", "JavaScript", "CSS" },
             Link: "https://novrianfh.github.io/JadwalSholat",
-            LinkLabel: "JadwalSholat App")
+            LinkLabel: "JadwalSholat App"),
+        new(
+            Name: "PosCafe - Offline Point of Sales",
+            Blurb: "Offline Point of Sales (POS) app for cafe and restaurant businesses, built with .NET MAUI for Android devices.",
+            Tech: new[] { "dotnet MAUI", ".NET 10", "C#", "Android App" },
+            Link: "https://play.google.com/store/apps/details?id=com.novrian.poscafe",
+            LinkLabel: "PosCafe App on Playstore")
     };
 
     // ---- Links -----------------------------------------------------------------
